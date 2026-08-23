@@ -1,0 +1,1 @@
+export { default as ModulePlaceholderPage } from '@/pages/module-placeholder/ui/ModulePlaceholderPage.vue'
