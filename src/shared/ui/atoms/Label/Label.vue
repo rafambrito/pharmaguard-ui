@@ -16,6 +16,6 @@ defineProps<Props>()
 .pg-label {
   font-size: 13px;
   font-weight: 600;
-  color: #253c5a;
+  color: var(--pg-color-text-primary);
 }
 </style>

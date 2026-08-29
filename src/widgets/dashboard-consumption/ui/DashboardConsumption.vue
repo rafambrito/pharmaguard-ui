@@ -56,16 +56,16 @@ function barHeight(value: number): string {
   max-width: 42px;
   min-height: 4px;
   border-radius: 6px 6px 0 0;
-  background: linear-gradient(180deg, #2b93b8 0%, #005a87 100%);
+  background: linear-gradient(180deg, var(--pg-color-blue-500) 0%, var(--pg-color-blue-700) 100%);
 }
 
 .consumption-chart__value {
-  color: #4d5f68;
+  color: var(--pg-color-text-secondary);
   font-size: 0.68rem;
 }
 
 .consumption-chart__label {
-  color: #667780;
+  color: var(--pg-color-text-muted);
   font-size: 0.72rem;
   font-weight: 600;
 }

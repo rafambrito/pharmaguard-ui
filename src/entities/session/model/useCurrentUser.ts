@@ -11,5 +11,7 @@ export function useCurrentUser() {
     return username && username.length > 0 ? username : FALLBACK_DISPLAY_NAME
   })
 
-  return { displayName }
+  const primaryRole = computed(() => sessionStore.principal?.roles?.[0] ?? '')
+
+  return { displayName, primaryRole }
 }

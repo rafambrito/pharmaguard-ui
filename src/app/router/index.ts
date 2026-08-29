@@ -5,6 +5,7 @@ import { canAccessRoute } from '@/features/auth/lib/accessControl'
 import { HomePage } from '@/pages/home'
 import { LoginPage } from '@/pages/login'
 import { ModulePlaceholderPage } from '@/pages/module-placeholder'
+import { UsuariosPage } from '@/pages/usuarios'
 
 interface AppRouteMeta {
   requiresAuth?: boolean
@@ -24,7 +25,6 @@ const placeholderRoutes = [
   ['alertas', 'Alertas'],
   ['relatorios', 'Relatórios'],
   ['inteligencia', 'Inteligência'],
-  ['usuarios', 'Usuários'],
   ['perfis', 'Perfis'],
 ] as const
 
@@ -45,6 +45,16 @@ export const router = createRouter({
       component: HomePage,
       meta: {
         requiresAuth: true,
+      } satisfies AppRouteMeta,
+    },
+    {
+      path: '/usuarios',
+      name: 'usuarios',
+      component: UsuariosPage,
+      meta: {
+        requiresAuth: true,
+        roles: ['ROLE_ADMIN'],
+        title: 'Usuários',
       } satisfies AppRouteMeta,
     },
     {

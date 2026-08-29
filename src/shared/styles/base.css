@@ -1,7 +1,43 @@
 :root {
+  /* Design tokens — PharmaGuard (azul/branco, hierarquia por tonalidade) */
+  --pg-color-blue-900: #0b2745;
+  --pg-color-blue-800: #123a63;
+  --pg-color-blue-700: #165a9e;
+  --pg-color-blue-600: #2470c4;
+  --pg-color-blue-500: #3b8bd6;
+  --pg-color-blue-100: #e8f1fc;
+  --pg-color-blue-50: #f4f9ff;
+
+  --pg-color-surface: #ffffff;
+  --pg-color-bg: #f2f6fc;
+  --pg-color-border: #dde7f2;
+
+  --pg-color-text-primary: #0f2c4c;
+  --pg-color-text-secondary: #55708c;
+  --pg-color-text-muted: #7d93a8;
+
+  --pg-color-critical: #d5372a;
+  --pg-color-critical-bg: #fde3e0;
+  --pg-color-warning: #e07406;
+  --pg-color-warning-bg: #ffe6d1;
+  --pg-color-monitoring: #a3830a;
+  --pg-color-monitoring-bg: #fff2d7;
+  --pg-color-normal: #1f9257;
+  --pg-color-normal-bg: #dff3e5;
+
+  --pg-radius-sm: 8px;
+  --pg-radius-md: 12px;
+  --pg-radius-lg: 18px;
+
+  --pg-shadow-sm: 0 2px 8px rgba(15, 44, 76, 0.05);
+  --pg-shadow-md: 0 10px 28px rgba(15, 44, 76, 0.07);
+
+  /* single gutter used by all dashboard grids/lists, equivalent to a Bootstrap g-* utility */
+  --pg-gutter: clamp(10px, 1.4vw, 14px);
+
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  color: #11223a;
-  background: radial-gradient(circle at top left, #f2f8ff 0%, #eef4fb 45%, #e6eef7 100%);
+  color: var(--pg-color-text-primary);
+  background: var(--pg-color-bg);
   line-height: 1.5;
   font-weight: 400;
 }
@@ -22,11 +58,13 @@ body {
 .app-layout {
   min-height: 100vh;
   display: grid;
-  grid-template-columns: 240px 1fr;
+  grid-template-columns: auto 1fr;
+  background: var(--pg-color-bg);
 }
 
 .app-main {
-  padding: 24px;
+  padding: 24px 28px 32px;
+  min-width: 0;
 }
 
 .home-page {
@@ -34,11 +72,11 @@ body {
 }
 
 .home-card {
-  background: #ffffff;
-  border: 1px solid #dbe6f2;
-  border-radius: 16px;
+  background: var(--pg-color-surface);
+  border: 1px solid var(--pg-color-border);
+  border-radius: var(--pg-radius-lg);
   padding: 20px;
-  box-shadow: 0 8px 30px rgba(17, 34, 58, 0.08);
+  box-shadow: var(--pg-shadow-md);
 }
 
 .demo-form {

@@ -27,22 +27,22 @@ defineProps<Props>()
 }
 
 .pg-status-badge--critical {
-  background: #fde3e0;
-  color: #a3231a;
+  background: var(--pg-color-critical-bg);
+  color: var(--pg-color-critical);
 }
 
 .pg-status-badge--warning {
-  background: #ffe6d1;
-  color: #9a4b06;
+  background: var(--pg-color-warning-bg);
+  color: var(--pg-color-warning);
 }
 
 .pg-status-badge--monitoring {
-  background: #fff2d7;
-  color: #8b5c00;
+  background: var(--pg-color-monitoring-bg);
+  color: var(--pg-color-monitoring);
 }
 
 .pg-status-badge--normal {
-  background: #dff3e5;
-  color: #1f6b40;
+  background: var(--pg-color-normal-bg);
+  color: var(--pg-color-normal);
 }
 </style>

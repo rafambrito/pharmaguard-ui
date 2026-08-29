@@ -1,5 +1,10 @@
 export type DashboardStatus = 'critical' | 'warning' | 'monitoring' | 'normal'
 
+export interface DashboardMetricTrend {
+  direction: 'up' | 'down'
+  label: string
+}
+
 export interface DashboardMetric {
   id: string
   icon: string
@@ -7,6 +12,7 @@ export interface DashboardMetric {
   value: string
   description: string
   status?: DashboardStatus
+  trend?: DashboardMetricTrend
 }
 
 export interface DashboardAlert {

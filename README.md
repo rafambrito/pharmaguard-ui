@@ -1,7 +1,5 @@
 # 💊 PharmaGuard UI
 
-Frontend do **PharmaGuard**, uma plataforma para gestão inteligente de medicamentos, insumos e estoques em unidades de saúde.
-
 O `pharmaguard-ui` foi projetado para oferecer uma interface moderna, modular e escalável, seguindo **Feature-Sliced Design (FSD)**, **Clean Architecture** e **Atomic Design**.
 
 ---

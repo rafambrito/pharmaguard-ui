@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { statusLabel, type DashboardMetric } from '@/entities/dashboard'
+import type { DashboardMetric } from '@/entities/dashboard'
 import MetricCard from '@/shared/ui/molecules/MetricCard/MetricCard.vue'
 
 interface Props {
@@ -19,7 +19,7 @@ defineProps<Props>()
       :value="metric.value"
       :description="metric.description"
       :tone="metric.status"
-      :status-label="metric.status ? statusLabel(metric.status) : ''"
+      :trend="metric.trend"
     />
   </section>
 </template>
@@ -28,7 +28,8 @@ defineProps<Props>()
 .dashboard-metrics {
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
-  gap: clamp(10px, 1.4vw, 14px);
+  gap: var(--pg-gutter);
+  align-items: stretch;
 }
 
 @media (max-width: 980px) {

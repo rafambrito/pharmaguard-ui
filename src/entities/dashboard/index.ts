@@ -4,6 +4,7 @@ export type {
   ConsumptionTrend,
   DashboardAlert,
   DashboardMetric,
+  DashboardMetricTrend,
   DashboardOverview,
   DashboardStatus,
   TransferOpportunity,

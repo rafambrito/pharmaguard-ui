@@ -33,7 +33,17 @@ export default tseslint.config(
       'vue/multi-word-component-names': [
         'error',
         {
-          ignores: ['Button', 'Input', 'Label', 'Icon', 'Header', 'Sidebar'],
+          ignores: [
+            'Button',
+            'Input',
+            'Label',
+            'Icon',
+            'Header',
+            'Sidebar',
+            'Card',
+            'Typography',
+            'Select',
+          ],
         },
       ],
     },

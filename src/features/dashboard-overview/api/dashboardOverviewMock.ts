@@ -9,6 +9,7 @@ const dashboardOverviewMock: DashboardOverview = {
       value: '1.284',
       description: '32 itens adicionados nos últimos 30 dias.',
       status: 'normal',
+      trend: { direction: 'up', label: '+8% no último período' },
     },
     {
       id: 'estoque-critico',
@@ -17,6 +18,7 @@ const dashboardOverviewMock: DashboardOverview = {
       value: '37',
       description: 'Saldo abaixo do estoque mínimo definido.',
       status: 'critical',
+      trend: { direction: 'up', label: '+5% no último período' },
     },
     {
       id: 'lotes-vencimento',
@@ -25,6 +27,7 @@ const dashboardOverviewMock: DashboardOverview = {
       value: '18',
       description: 'Vencimento previsto nos próximos 60 dias.',
       status: 'warning',
+      trend: { direction: 'down', label: '-3% no último período' },
     },
     {
       id: 'transferencias-pendentes',
@@ -33,6 +36,7 @@ const dashboardOverviewMock: DashboardOverview = {
       value: '6',
       description: 'Aguardando aprovação ou envio entre unidades.',
       status: 'monitoring',
+      trend: { direction: 'down', label: '-2 no último período' },
     },
   ],
   alerts: [

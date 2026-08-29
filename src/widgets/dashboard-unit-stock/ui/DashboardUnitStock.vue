@@ -54,20 +54,20 @@ defineProps<Props>()
 th,
 td {
   padding: 9px 10px;
-  border-bottom: 1px solid #e6edf1;
+  border-bottom: 1px solid var(--pg-color-border);
   text-align: left;
   white-space: nowrap;
 }
 
 th {
-  color: #667780;
+  color: var(--pg-color-text-muted);
   font-size: 0.72rem;
   font-weight: 700;
   text-transform: uppercase;
 }
 
 td {
-  color: #24323a;
+  color: var(--pg-color-text-primary);
 }
 
 tbody tr:last-child td {
