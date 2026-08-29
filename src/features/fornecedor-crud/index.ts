@@ -1,0 +1,1 @@
+export { useFornecedorCrud } from '@/features/fornecedor-crud/model/useFornecedorCrud'

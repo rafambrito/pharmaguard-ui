@@ -1,0 +1,1 @@
+export { useEntradaEstoqueCrud } from '@/features/entrada-estoque-crud/model/useEntradaEstoqueCrud'

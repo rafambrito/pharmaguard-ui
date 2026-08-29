@@ -1,0 +1,1 @@
+export { default as TransferenciasPage } from '@/pages/transferencias/ui/TransferenciasPage.vue'

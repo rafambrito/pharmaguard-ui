@@ -1,0 +1,1 @@
+export { useTransferenciaEstoqueCrud } from '@/features/transferencia-estoque-crud/model/useTransferenciaEstoqueCrud'

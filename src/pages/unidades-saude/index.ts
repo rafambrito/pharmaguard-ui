@@ -1,0 +1,1 @@
+export { default as UnidadesSaudePage } from '@/pages/unidades-saude/ui/UnidadesSaudePage.vue'

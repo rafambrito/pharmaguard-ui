@@ -1,0 +1,1 @@
+export { default as EstoquePage } from '@/pages/estoque/ui/EstoquePage.vue'

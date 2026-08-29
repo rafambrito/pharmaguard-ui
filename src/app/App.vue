@@ -20,6 +20,7 @@ const navGroups = computed(() => [
     label: 'Gestão',
     items: [
       { label: 'Medicamentos', to: '/medicamentos', icon: 'pill' },
+      { label: 'Unidades de Medida', to: '/unidades-medida', icon: 'box' },
       { label: 'Estoque', to: '/estoque', icon: 'box' },
       { label: 'Fornecedores', to: '/fornecedores', icon: 'truck' },
       { label: 'Unidades de Saúde', to: '/unidades-saude', icon: 'hospital' },

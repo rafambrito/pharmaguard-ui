@@ -1,0 +1,1 @@
+export { default as EntradasPage } from '@/pages/entradas/ui/EntradasPage.vue'

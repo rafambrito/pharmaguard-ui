@@ -1,0 +1,1 @@
+export { default as FornecedoresPage } from '@/pages/fornecedores/ui/FornecedoresPage.vue'

@@ -1,0 +1,1 @@
+export { useSaidaEstoqueCrud } from '@/features/saida-estoque-crud/model/useSaidaEstoqueCrud'

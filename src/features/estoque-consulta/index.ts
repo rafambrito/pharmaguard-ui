@@ -1,0 +1,1 @@
+export { useEstoqueConsulta } from '@/features/estoque-consulta/model/useEstoqueConsulta'

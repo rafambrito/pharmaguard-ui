@@ -1,0 +1,1 @@
+export { useUnidadeSaudeCrud } from '@/features/unidade-saude-crud/model/useUnidadeSaudeCrud'

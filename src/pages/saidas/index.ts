@@ -1,0 +1,1 @@
+export { default as SaidasPage } from '@/pages/saidas/ui/SaidasPage.vue'

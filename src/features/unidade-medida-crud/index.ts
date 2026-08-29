@@ -1,0 +1,1 @@
+export { useUnidadeMedidaCrud } from '@/features/unidade-medida-crud/model/useUnidadeMedidaCrud'

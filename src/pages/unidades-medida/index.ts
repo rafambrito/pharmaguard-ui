@@ -1,0 +1,1 @@
+export { default as UnidadesMedidaPage } from '@/pages/unidades-medida/ui/UnidadesMedidaPage.vue'

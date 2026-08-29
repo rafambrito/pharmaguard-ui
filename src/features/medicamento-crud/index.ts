@@ -1,0 +1,1 @@
+export { useMedicamentoCrud } from '@/features/medicamento-crud/model/useMedicamentoCrud'
