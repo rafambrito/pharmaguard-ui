@@ -1,0 +1,1 @@
+export { useRelatorioConsulta } from '@/features/relatorio-consulta/model/useRelatorioConsulta'

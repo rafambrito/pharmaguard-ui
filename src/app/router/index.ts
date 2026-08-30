@@ -2,6 +2,7 @@ import { createRouter, createWebHistory } from 'vue-router'
 import { pinia } from '@/app/providers/pinia'
 import { useSessionStore } from '@/entities/session'
 import { canAccessRoute } from '@/features/auth/lib/accessControl'
+import { AlertasPage } from '@/pages/alertas'
 import { EntradasPage } from '@/pages/entradas'
 import { EstoquePage } from '@/pages/estoque'
 import { FornecedoresPage } from '@/pages/fornecedores'
@@ -9,6 +10,7 @@ import { HomePage } from '@/pages/home'
 import { LoginPage } from '@/pages/login'
 import { MedicamentosPage } from '@/pages/medicamentos'
 import { ModulePlaceholderPage } from '@/pages/module-placeholder'
+import { RelatoriosPage } from '@/pages/relatorios'
 import { SaidasPage } from '@/pages/saidas'
 import { TransferenciasPage } from '@/pages/transferencias'
 import { UnidadesMedidaPage } from '@/pages/unidades-medida'
@@ -23,8 +25,6 @@ interface AppRouteMeta {
 }
 
 const placeholderRoutes = [
-  ['alertas', 'Alertas'],
-  ['relatorios', 'Relatórios'],
   ['inteligencia', 'Inteligência'],
   ['perfis', 'Perfis'],
 ] as const
@@ -128,6 +128,24 @@ export const router = createRouter({
       meta: {
         requiresAuth: true,
         title: 'Transferências',
+      } satisfies AppRouteMeta,
+    },
+    {
+      path: '/alertas',
+      name: 'alertas',
+      component: AlertasPage,
+      meta: {
+        requiresAuth: true,
+        title: 'Alertas',
+      } satisfies AppRouteMeta,
+    },
+    {
+      path: '/relatorios',
+      name: 'relatorios',
+      component: RelatoriosPage,
+      meta: {
+        requiresAuth: true,
+        title: 'Relatórios',
       } satisfies AppRouteMeta,
     },
     {

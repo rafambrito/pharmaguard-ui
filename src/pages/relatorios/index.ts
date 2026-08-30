@@ -1,0 +1,1 @@
+export { default as RelatoriosPage } from '@/pages/relatorios/ui/RelatoriosPage.vue'

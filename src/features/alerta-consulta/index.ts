@@ -1,0 +1,1 @@
+export { useAlertaConsulta } from '@/features/alerta-consulta/model/useAlertaConsulta'
