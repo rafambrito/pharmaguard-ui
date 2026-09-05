@@ -1,6 +1,6 @@
 import { onMounted, ref } from 'vue'
 import type { DashboardOverview } from '@/entities/dashboard'
-import { fetchDashboardOverview } from '@/features/dashboard-overview/api/dashboardOverviewMock'
+import { fetchDashboardOverview } from '@/features/dashboard-overview/api/dashboardOverviewApi'
 
 export function useDashboardOverview() {
   const overview = ref<DashboardOverview | null>(null)

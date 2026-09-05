@@ -5,6 +5,7 @@ export type {
   ItemProdutoCritico,
   ItemReposicao,
   ItemVencimento,
+  MetricasMotorEstatistico,
   PrioridadeRelatorio,
   RelatorioConsumo,
   RelatorioEstoqueMinimo,

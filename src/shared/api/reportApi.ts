@@ -1,5 +1,6 @@
 import { httpClient } from '@/shared/api/http/httpClient'
 import type {
+  MetricasMotorEstatistico,
   RelatorioConsumo,
   RelatorioEstoqueMinimo,
   RelatorioFiltro,
@@ -60,6 +61,15 @@ export async function getRelatorioVencimentos(
 
 export async function getRelatorioReposicao(filtro: RelatorioFiltro): Promise<RelatorioReposicao> {
   const response = await httpClient.get<RelatorioReposicao>(`${RESOURCE}/reposicao`, {
+    params: toParams(filtro),
+  })
+  return response.data
+}
+
+export async function getMetricasMotorEstatistico(
+  filtro: RelatorioFiltro,
+): Promise<MetricasMotorEstatistico> {
+  const response = await httpClient.get<MetricasMotorEstatistico>(`${RESOURCE}/metricas-motor`, {
     params: toParams(filtro),
   })
   return response.data

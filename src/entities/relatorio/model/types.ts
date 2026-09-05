@@ -115,6 +115,20 @@ export interface RelatorioReposicao {
   itens: ItemReposicao[]
 }
 
+export interface MetricasMotorEstatistico {
+  periodoInicio: string
+  periodoFim: string
+  totalMedicamentosAnalisados: number
+  totalItensComReposicaoSugerida: number
+  totalItensComRiscoRuptura: number
+  totalItensComRiscoValidade: number
+  totalConsumoPeriodo: number
+  coberturaMediaDias: number
+  integracaoSchedulerPreparada: boolean
+  integracaoDashboardPreparada: boolean
+  atualizadoEm: string
+}
+
 export type RelatorioResultado =
   | { tipo: 'CONSUMO'; data: RelatorioConsumo }
   | { tipo: 'PRODUTOS_CRITICOS'; data: RelatorioProdutosCriticos }
