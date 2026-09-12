@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { computed } from 'vue'
 import type { ConsumptionTrend } from '@/entities/dashboard'
+import DashboardInsight from '@/features/dashboard-insight/ui/DashboardInsight.vue'
 import SectionPanel from '@/shared/ui/molecules/SectionPanel/SectionPanel.vue'
 
 interface Props {
@@ -28,6 +29,7 @@ function barHeight(value: number): string {
         <span class="consumption-chart__label">{{ point.label }}</span>
       </div>
     </div>
+    <DashboardInsight painel="CONSUMO" />
   </SectionPanel>
 </template>
 

@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { statusLabel, type UnitStockSummary } from '@/entities/dashboard'
+import DashboardInsight from '@/features/dashboard-insight/ui/DashboardInsight.vue'
 import StatusBadge from '@/shared/ui/atoms/StatusBadge/StatusBadge.vue'
 import SectionPanel from '@/shared/ui/molecules/SectionPanel/SectionPanel.vue'
 
@@ -37,6 +38,7 @@ defineProps<Props>()
         </tbody>
       </table>
     </div>
+    <DashboardInsight painel="ESTOQUE_POR_UNIDADE" />
   </SectionPanel>
 </template>
 
