@@ -3,6 +3,7 @@ import { onMounted } from 'vue'
 import { t } from '@/shared/config/messages'
 import { ENTRADA_ESTOQUE_ORIGENS, entradaEstoqueOrigemLabel } from '@/entities/entrada-estoque'
 import { useEntradaEstoqueCrud } from '@/features/entrada-estoque-crud'
+import { formatDate } from '@/shared/utils'
 import Button from '@/shared/ui/atoms/Button/Button.vue'
 import Input from '@/shared/ui/atoms/Input/Input.vue'
 import Label from '@/shared/ui/atoms/Label/Label.vue'
@@ -104,7 +105,7 @@ onMounted(() => {
             <Select
               id="entrada-lote"
               v-model="form.loteId"
-              :options="lotes.map((lote) => ({ value: String(lote.id), label: `${lote.numeroLote} - ${lote.dataValidade}` }))"
+              :options="lotes.map((lote) => ({ value: String(lote.id), label: `${lote.numeroLote} - ${formatDate(lote.dataValidade)}` }))"
               :placeholder="isLoadingLotes ? t('entradasEstoque.state.loadingLotes') : t('entradasEstoque.option.select')"
               :disabled="isBusy || isViewing || !form.medicamentoId"
             />

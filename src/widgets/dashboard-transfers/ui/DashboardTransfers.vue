@@ -1,12 +1,13 @@
 <script setup lang="ts">
 import type { TransferOpportunity } from '@/entities/dashboard'
+import DashboardInsight from '@/features/dashboard-insight/ui/DashboardInsight.vue'
 import SectionPanel from '@/shared/ui/molecules/SectionPanel/SectionPanel.vue'
 
 interface Props {
   opportunities: TransferOpportunity[]
 }
 
-defineProps<Props>()
+const props = defineProps<Props>()
 </script>
 
 <template>
@@ -14,6 +15,9 @@ defineProps<Props>()
     title="Oportunidades de transferência"
     description="Sugestões de remanejamento para equilibrar o estoque entre unidades."
   >
+    <template #actions>
+      <DashboardInsight v-if="props.opportunities.length > 0" painel="TRANSFERENCIAS" />
+    </template>
     <ul class="transfer-list">
       <li v-for="opportunity in opportunities" :key="opportunity.id" class="transfer-item">
         <p class="transfer-item__route">

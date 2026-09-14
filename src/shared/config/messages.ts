@@ -41,7 +41,7 @@ const messages = {
   'dashboard.state.error': 'Não foi possível carregar os indicadores do estoque.',
   'dashboard.insight.action': 'Explicar com IA',
   'dashboard.insight.error': 'Não foi possível gerar a explicação do painel.',
-  'dashboard.insight.fallback': 'Resumo determinístico: a IA está indisponível.',
+  'dashboard.insight.fallback': 'Resumo operacional baseado nos dados atuais.',
   'label.usuario': 'Usuario',
   'label.senha': 'Senha',
   'placeholder.usuario': 'Digite seu usuario',

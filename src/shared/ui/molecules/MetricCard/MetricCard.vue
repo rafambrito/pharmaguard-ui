@@ -23,6 +23,7 @@ withDefaults(defineProps<Props>(), {
   <Card as="article" class="pg-metric-card" :class="tone ? `pg-metric-card--${tone}` : ''">
     <div class="pg-metric-card__head">
       <span class="pg-metric-card__icon" aria-hidden="true">{{ icon }}</span>
+      <slot name="actions" />
     </div>
     <p class="pg-metric-card__title">{{ title }}</p>
     <p class="pg-metric-card__value">{{ value }}</p>

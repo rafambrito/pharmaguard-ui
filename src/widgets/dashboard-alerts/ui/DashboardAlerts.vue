@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import type { DashboardAlert } from '@/entities/dashboard'
+import DashboardInsight from '@/features/dashboard-insight/ui/DashboardInsight.vue'
 import AlertItem from '@/shared/ui/molecules/AlertItem/AlertItem.vue'
 import SectionPanel from '@/shared/ui/molecules/SectionPanel/SectionPanel.vue'
 
@@ -7,7 +8,7 @@ interface Props {
   alerts: DashboardAlert[]
 }
 
-defineProps<Props>()
+const props = defineProps<Props>()
 </script>
 
 <template>
@@ -15,6 +16,9 @@ defineProps<Props>()
     title="Alertas prioritários"
     description="Ocorrências que exigem ação imediata da equipe de farmácia."
   >
+    <template #actions>
+      <DashboardInsight v-if="props.alerts.length > 0" painel="ALERTAS" />
+    </template>
     <ul class="alert-list">
       <AlertItem
         v-for="alert in alerts"

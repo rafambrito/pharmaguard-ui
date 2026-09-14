@@ -13,6 +13,8 @@ export interface ExplicarPainelRequest {
   tipoPainel: TipoPainelInsight
   periodoInicio: string
   periodoFim: string
+  medicamentoId?: number
+  unidadeSaudeId?: number
 }
 
 export interface ExplicacaoPainelResponse {

@@ -16,6 +16,9 @@ defineProps<Props>()
     title="Estoque por unidade"
     description="Situação resumida das unidades de saúde atendidas."
   >
+    <template #actions>
+      <DashboardInsight painel="ESTOQUE_POR_UNIDADE" />
+    </template>
     <div class="unit-table-wrapper">
       <table class="unit-table">
         <thead>
@@ -38,7 +41,6 @@ defineProps<Props>()
         </tbody>
       </table>
     </div>
-    <DashboardInsight painel="ESTOQUE_POR_UNIDADE" />
   </SectionPanel>
 </template>
 

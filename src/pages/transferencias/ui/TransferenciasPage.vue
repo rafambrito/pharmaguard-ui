@@ -2,6 +2,7 @@
 import { onMounted } from 'vue'
 import { t } from '@/shared/config/messages'
 import { useTransferenciaEstoqueCrud } from '@/features/transferencia-estoque-crud'
+import { formatDate } from '@/shared/utils'
 import Button from '@/shared/ui/atoms/Button/Button.vue'
 import Input from '@/shared/ui/atoms/Input/Input.vue'
 import Label from '@/shared/ui/atoms/Label/Label.vue'
@@ -225,7 +226,7 @@ onMounted(() => {
                 {{ lotesTransferidosLabel(transferencia.saida.lotesConsumidos) }}
               </td>
               <td :data-label="t('transferenciasEstoque.field.dataTransferencia')">
-                {{ transferencia.dataTransferencia || '-' }}
+                {{ formatDate(transferencia.dataTransferencia) }}
               </td>
             </tr>
           </tbody>

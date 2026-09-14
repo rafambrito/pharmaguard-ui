@@ -18,6 +18,7 @@ import {
   urgenciaRelatorioTone,
 } from '@/entities/relatorio'
 import { useRelatorioConsulta } from '@/features/relatorio-consulta'
+import { formatDate } from '@/shared/utils'
 import Button from '@/shared/ui/atoms/Button/Button.vue'
 import Input from '@/shared/ui/atoms/Input/Input.vue'
 import Label from '@/shared/ui/atoms/Label/Label.vue'
@@ -198,7 +199,7 @@ onMounted(() => {
       </div>
       <div class="summary-card">
         <span>{{ t('relatorios.summary.period') }}</span>
-        <strong>{{ hasSearched ? `${periodo.inicio} - ${periodo.fim}` : '-' }}</strong>
+        <strong>{{ hasSearched ? `${formatDate(periodo.inicio)} - ${formatDate(periodo.fim)}` : '-' }}</strong>
       </div>
       <div class="summary-card">
         <span>{{ t('relatorios.summary.indicator') }}</span>
@@ -226,7 +227,7 @@ onMounted(() => {
       <p v-else-if="!hasSearched" class="state">{{ t('relatorios.state.initial') }}</p>
 
       <div v-else-if="relatorioConsumo" class="table-scroll">
-        <p class="results-period">{{ t('relatorios.results.period') }} {{ periodo.inicio }} - {{ periodo.fim }}</p>
+        <p class="results-period">{{ t('relatorios.results.period') }} {{ formatDate(periodo.inicio) }} - {{ formatDate(periodo.fim) }}</p>
         <p v-if="relatorioConsumo.itens.length === 0" class="state">{{ t('relatorios.state.empty') }}</p>
         <table v-else class="table">
           <thead>
@@ -255,7 +256,7 @@ onMounted(() => {
       </div>
 
       <div v-else-if="relatorioProdutosCriticos" class="table-scroll">
-        <p class="results-period">{{ t('relatorios.results.period') }} {{ periodo.inicio }} - {{ periodo.fim }}</p>
+        <p class="results-period">{{ t('relatorios.results.period') }} {{ formatDate(periodo.inicio) }} - {{ formatDate(periodo.fim) }}</p>
         <p v-if="relatorioProdutosCriticos.itens.length === 0" class="state">{{ t('relatorios.state.empty') }}</p>
         <table v-else class="table">
           <thead>
@@ -288,7 +289,7 @@ onMounted(() => {
       </div>
 
       <div v-else-if="relatorioEstoqueMinimo" class="table-scroll">
-        <p class="results-period">{{ t('relatorios.results.period') }} {{ periodo.inicio }} - {{ periodo.fim }}</p>
+        <p class="results-period">{{ t('relatorios.results.period') }} {{ formatDate(periodo.inicio) }} - {{ formatDate(periodo.fim) }}</p>
         <p v-if="relatorioEstoqueMinimo.itens.length === 0" class="state">{{ t('relatorios.state.empty') }}</p>
         <table v-else class="table">
           <thead>
@@ -317,7 +318,7 @@ onMounted(() => {
       </div>
 
       <div v-else-if="relatorioVencimentos" class="table-scroll">
-        <p class="results-period">{{ t('relatorios.results.period') }} {{ periodo.inicio }} - {{ periodo.fim }}</p>
+        <p class="results-period">{{ t('relatorios.results.period') }} {{ formatDate(periodo.inicio) }} - {{ formatDate(periodo.fim) }}</p>
         <p v-if="relatorioVencimentos.itens.length === 0" class="state">{{ t('relatorios.state.empty') }}</p>
         <table v-else class="table">
           <thead>
@@ -334,7 +335,7 @@ onMounted(() => {
             <tr v-for="item in relatorioVencimentos.itens" :key="`${item.medicamentoId}-${item.numeroLote}`" class="table__row table__row--static">
               <td :data-label="t('relatorios.field.medicamento')" class="table__cell--strong">{{ item.nomeMedicamento }}</td>
               <td :data-label="t('relatorios.field.lote')">{{ item.numeroLote }}</td>
-              <td :data-label="t('relatorios.field.dataValidade')">{{ item.dataValidade }}</td>
+              <td :data-label="t('relatorios.field.dataValidade')">{{ formatDate(item.dataValidade) }}</td>
               <td :data-label="t('relatorios.field.quantidade')">{{ item.quantidade }}</td>
               <td :data-label="t('relatorios.field.statusValidade')">
                 <StatusBadge :tone="statusValidadeRelatorioTone(item.statusValidade)" :label="statusValidadeRelatorioLabel(item.statusValidade)" />
@@ -348,7 +349,7 @@ onMounted(() => {
       </div>
 
       <div v-else-if="relatorioReposicao" class="table-scroll">
-        <p class="results-period">{{ t('relatorios.results.period') }} {{ periodo.inicio }} - {{ periodo.fim }}</p>
+        <p class="results-period">{{ t('relatorios.results.period') }} {{ formatDate(periodo.inicio) }} - {{ formatDate(periodo.fim) }}</p>
         <p v-if="relatorioReposicao.itens.length === 0" class="state">{{ t('relatorios.state.empty') }}</p>
         <table v-else class="table">
           <thead>

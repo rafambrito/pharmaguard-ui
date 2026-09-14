@@ -22,6 +22,9 @@ function barHeight(value: number): string {
     title="Tendência de consumo"
     :description="`${trend.periodLabel} · ${trend.unitOfMeasure}`"
   >
+    <template #actions>
+      <DashboardInsight painel="CONSUMO" />
+    </template>
     <div class="consumption-chart" role="img" :aria-label="`Tendência de consumo — ${trend.periodLabel}`">
       <div v-for="point in trend.points" :key="point.label" class="consumption-chart__column">
         <span class="consumption-chart__value">{{ point.value.toLocaleString('pt-BR') }}</span>
@@ -29,7 +32,6 @@ function barHeight(value: number): string {
         <span class="consumption-chart__label">{{ point.label }}</span>
       </div>
     </div>
-    <DashboardInsight painel="CONSUMO" />
   </SectionPanel>
 </template>
 

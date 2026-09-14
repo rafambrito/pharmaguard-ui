@@ -10,6 +10,7 @@ import {
   alertaTipoTone,
 } from '@/entities/alerta'
 import { useAlertaConsulta } from '@/features/alerta-consulta'
+import { formatDate } from '@/shared/utils'
 import Button from '@/shared/ui/atoms/Button/Button.vue'
 import Input from '@/shared/ui/atoms/Input/Input.vue'
 import Label from '@/shared/ui/atoms/Label/Label.vue'
@@ -159,7 +160,7 @@ onMounted(() => {
 
       <div v-else class="table-scroll">
         <p class="results-period">
-          {{ t('alertas.results.period') }} {{ periodo.inicio }} - {{ periodo.fim }}
+          {{ t('alertas.results.period') }} {{ formatDate(periodo.inicio) }} - {{ formatDate(periodo.fim) }}
         </p>
 
         <table class="table">

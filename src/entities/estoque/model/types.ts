@@ -27,6 +27,7 @@ export interface MovimentacaoEstoque {
   unidadeId: number
   medicamentoId: number
   loteId: number | null
+  numeroLote: string | null
   quantidade: number
   saldoAposMovimentacao: number
   motivo: string

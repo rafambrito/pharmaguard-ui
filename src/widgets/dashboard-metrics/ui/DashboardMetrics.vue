@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import type { DashboardMetric } from '@/entities/dashboard'
+import DashboardInsight from '@/features/dashboard-insight/ui/DashboardInsight.vue'
 import MetricCard from '@/shared/ui/molecules/MetricCard/MetricCard.vue'
 
 interface Props {
@@ -20,7 +21,11 @@ defineProps<Props>()
       :description="metric.description"
       :tone="metric.status"
       :trend="metric.trend"
-    />
+    >
+      <template #actions>
+        <DashboardInsight painel="METRICAS" />
+      </template>
+    </MetricCard>
   </section>
 </template>
 

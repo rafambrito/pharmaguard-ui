@@ -9,6 +9,8 @@ import {
   statusValidadeTone,
 } from '@/entities/estoque'
 import { useEstoqueConsulta } from '@/features/estoque-consulta'
+import EstoqueInsight from '@/features/estoque-consulta/ui/EstoqueInsight.vue'
+import { formatDate } from '@/shared/utils'
 import Button from '@/shared/ui/atoms/Button/Button.vue'
 import Input from '@/shared/ui/atoms/Input/Input.vue'
 import Label from '@/shared/ui/atoms/Label/Label.vue'
@@ -147,7 +149,7 @@ onMounted(() => {
       </div>
       <div class="summary-card">
         <span>{{ t('estoque.summary.validade') }}</span>
-        <strong>{{ saldo?.validadeMaisProxima ?? '-' }}</strong>
+        <strong>{{ formatDate(saldo?.validadeMaisProxima) }}</strong>
       </div>
       <div class="summary-card">
         <span>{{ t('estoque.summary.movimentacoes') }}</span>
@@ -155,7 +157,10 @@ onMounted(() => {
       </div>
     </section>
 
-    <SectionPanel :title="t('estoque.lotes.title')" :description="t('estoque.lotes.description')">
+    <SectionPanel :title="t('estoque.lotes.title')" :description="t('estoque.lotes.description')" centered-header>
+      <template #actions>
+        <EstoqueInsight v-if="saldosLote.length > 0" painel="ESTOQUE_POR_UNIDADE" :filtro="filtro" />
+      </template>
       <p v-if="isLoading" class="state">{{ t('estoque.state.loading') }}</p>
       <p v-else-if="!hasSearched" class="state">{{ t('estoque.state.initial') }}</p>
       <p v-else-if="!filtro.medicamentoId" class="state">{{ t('estoque.state.medicamentoRequired') }}</p>
@@ -176,7 +181,7 @@ onMounted(() => {
               <td :data-label="t('estoque.field.lote')" class="table__cell--strong">
                 {{ lote.numeroLote }}
               </td>
-              <td :data-label="t('estoque.field.dataValidade')">{{ lote.dataValidade }}</td>
+              <td :data-label="t('estoque.field.dataValidade')">{{ formatDate(lote.dataValidade) }}</td>
               <td :data-label="t('estoque.field.quantidadeDisponivel')">
                 {{ lote.quantidadeDisponivel }}
               </td>
@@ -192,7 +197,10 @@ onMounted(() => {
       </div>
     </SectionPanel>
 
-    <SectionPanel :title="t('estoque.movimentacoes.title')" :description="t('estoque.movimentacoes.description')">
+    <SectionPanel :title="t('estoque.movimentacoes.title')" :description="t('estoque.movimentacoes.description')" centered-header>
+      <template #actions>
+        <EstoqueInsight v-if="movimentacoes.length > 0" painel="CONSUMO" :filtro="filtro" />
+      </template>
       <p v-if="isLoading" class="state">{{ t('estoque.state.loading') }}</p>
       <p v-else-if="!hasSearched" class="state">{{ t('estoque.state.initial') }}</p>
       <p v-else-if="movimentacoes.length === 0" class="state">{{ t('estoque.state.emptyMovimentacoes') }}</p>
@@ -204,7 +212,7 @@ onMounted(() => {
               <th scope="col">{{ t('estoque.field.tipo') }}</th>
               <th scope="col">{{ t('estoque.field.unidade') }}</th>
               <th scope="col">{{ t('estoque.field.medicamento') }}</th>
-              <th scope="col">{{ t('estoque.field.loteId') }}</th>
+              <th scope="col">{{ t('estoque.field.lote') }}</th>
               <th scope="col">{{ t('estoque.field.quantidade') }}</th>
               <th scope="col">{{ t('estoque.field.saldoApos') }}</th>
               <th scope="col">{{ t('estoque.field.motivo') }}</th>
@@ -225,14 +233,14 @@ onMounted(() => {
               <td :data-label="t('estoque.field.medicamento')">
                 {{ medicamentoLabel(movimentacao.medicamentoId) }}
               </td>
-              <td :data-label="t('estoque.field.loteId')">{{ movimentacao.loteId ?? '-' }}</td>
+              <td :data-label="t('estoque.field.lote')">{{ movimentacao.numeroLote ?? '-' }}</td>
               <td :data-label="t('estoque.field.quantidade')">{{ movimentacao.quantidade }}</td>
               <td :data-label="t('estoque.field.saldoApos')">
                 {{ movimentacao.saldoAposMovimentacao }}
               </td>
               <td :data-label="t('estoque.field.motivo')">{{ movimentacao.motivo }}</td>
               <td :data-label="t('estoque.field.dataMovimentacao')">
-                {{ movimentacao.dataMovimentacao || '-' }}
+                {{ formatDate(movimentacao.dataMovimentacao) }}
               </td>
             </tr>
           </tbody>
@@ -240,7 +248,10 @@ onMounted(() => {
       </div>
     </SectionPanel>
 
-    <SectionPanel :title="t('estoque.vencimentos.title')" :description="t('estoque.vencimentos.description')">
+    <SectionPanel :title="t('estoque.vencimentos.title')" :description="t('estoque.vencimentos.description')" centered-header>
+      <template #actions>
+        <EstoqueInsight v-if="vencimentos.length > 0" painel="ALERTAS" :filtro="filtro" />
+      </template>
       <p v-if="isLoading" class="state">{{ t('estoque.state.loading') }}</p>
       <p v-else-if="!hasSearched" class="state">{{ t('estoque.state.initial') }}</p>
       <p v-else-if="vencimentos.length === 0" class="state">{{ t('estoque.state.emptyVencimentos') }}</p>
@@ -263,7 +274,7 @@ onMounted(() => {
                 {{ medicamentoLabel(lote.medicamentoId) }}
               </td>
               <td :data-label="t('estoque.field.lote')">{{ lote.numeroLote }}</td>
-              <td :data-label="t('estoque.field.dataValidade')">{{ lote.dataValidade }}</td>
+              <td :data-label="t('estoque.field.dataValidade')">{{ formatDate(lote.dataValidade) }}</td>
               <td :data-label="t('estoque.field.diasParaVencer')">{{ lote.diasParaVencer }}</td>
               <td :data-label="t('estoque.field.quantidadeDisponivel')">
                 {{ lote.quantidadeDisponivel }}
