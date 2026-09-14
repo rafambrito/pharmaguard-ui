@@ -7,6 +7,7 @@ import { EntradasPage } from '@/pages/entradas'
 import { EstoquePage } from '@/pages/estoque'
 import { FornecedoresPage } from '@/pages/fornecedores'
 import { HomePage } from '@/pages/home'
+import { InteligenciaPage } from '@/pages/inteligencia'
 import { LoginPage } from '@/pages/login'
 import { MedicamentosPage } from '@/pages/medicamentos'
 import { ModulePlaceholderPage } from '@/pages/module-placeholder'
@@ -25,7 +26,6 @@ interface AppRouteMeta {
 }
 
 const placeholderRoutes = [
-  ['inteligencia', 'Inteligência'],
   ['perfis', 'Perfis'],
 ] as const
 
@@ -146,6 +146,15 @@ export const router = createRouter({
       meta: {
         requiresAuth: true,
         title: 'Relatórios',
+      } satisfies AppRouteMeta,
+    },
+    {
+      path: '/inteligencia',
+      name: 'inteligencia',
+      component: InteligenciaPage,
+      meta: {
+        requiresAuth: true,
+        title: 'Inteligência',
       } satisfies AppRouteMeta,
     },
     {

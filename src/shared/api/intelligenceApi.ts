@@ -8,12 +8,16 @@ export type TipoPainelInsight =
   | 'METRICAS'
   | 'TRANSFERENCIAS'
   | 'ESTOQUE_POR_UNIDADE'
+  | 'DIAGNOSTICO_GERAL'
 
 export interface ExplicarPainelRequest {
   tipoPainel: TipoPainelInsight
   periodoInicio: string
   periodoFim: string
   medicamentoId?: number
+  categoriaId?: number
+  unidadeMedidaId?: number
+  fornecedorId?: number
   unidadeSaudeId?: number
 }
 

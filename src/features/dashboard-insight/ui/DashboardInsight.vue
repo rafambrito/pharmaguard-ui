@@ -47,6 +47,7 @@ async function explicar(): Promise<void> {
       type="button"
       class="dashboard-insight__button"
       :aria-label="t('dashboard.insight.action')"
+      @click="explicar"
       @mouseenter="explicar"
       @focus="explicar"
     >
