@@ -1,0 +1,5 @@
+export { default as IntegracoesPage } from '@/pages/integracoes/ui/IntegracoesPage.vue'
+export { default as BnafarIntegracaoPage } from '@/pages/integracoes/ui/BnafarIntegracaoPage.vue'
+export { default as CatmatIntegracaoPage } from '@/pages/integracoes/ui/CatmatIntegracaoPage.vue'
+export { default as RndsIntegracaoPage } from '@/pages/integracoes/ui/RndsIntegracaoPage.vue'
+export { default as AnvisaIntegracaoPage } from '@/pages/integracoes/ui/AnvisaIntegracaoPage.vue'

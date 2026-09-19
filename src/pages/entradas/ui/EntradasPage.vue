@@ -1,15 +1,19 @@
 <script setup lang="ts">
 import { onMounted } from 'vue'
+import { useRouter } from 'vue-router'
 import { t } from '@/shared/config/messages'
 import { ENTRADA_ESTOQUE_ORIGENS, entradaEstoqueOrigemLabel } from '@/entities/entrada-estoque'
 import { useEntradaEstoqueCrud } from '@/features/entrada-estoque-crud'
 import { formatDate } from '@/shared/utils'
 import Button from '@/shared/ui/atoms/Button/Button.vue'
+import Icon from '@/shared/ui/atoms/Icon/Icon.vue'
 import Input from '@/shared/ui/atoms/Input/Input.vue'
 import Label from '@/shared/ui/atoms/Label/Label.vue'
 import Select from '@/shared/ui/atoms/Select/Select.vue'
 import SectionPanel from '@/shared/ui/molecules/SectionPanel/SectionPanel.vue'
 import DashboardHeader from '@/shared/ui/organisms/DashboardHeader/DashboardHeader.vue'
+
+const router = useRouter()
 
 const {
   entradas,
@@ -65,6 +69,13 @@ onMounted(() => {
       :title="t('entradasEstoque.header.title')"
       :subtitle="t('entradasEstoque.header.subtitle')"
     />
+
+    <div class="page-actions">
+      <Button type="button" variant="secondary" @click="router.push('/entradas/nota-fiscal')">
+        <Icon name="barcode" :size="16" />
+        {{ t('notaFiscalEntrada.header.title') }}
+      </Button>
+    </div>
 
     <p v-if="feedback" class="feedback" :class="`feedback--${feedback.tone}`" role="status">
       <span class="feedback__dot" aria-hidden="true" />
@@ -234,6 +245,11 @@ onMounted(() => {
   width: 100%;
   min-width: 0;
   max-width: 1280px;
+}
+
+.page-actions {
+  display: flex;
+  justify-content: flex-end;
 }
 
 .feedback {

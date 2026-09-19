@@ -1,24 +1,27 @@
 # 💊 PharmaGuard UI
 
-O `pharmaguard-ui` foi projetado para oferecer uma interface moderna, modular e escalável, seguindo **Feature-Sliced Design (FSD)**, **Clean Architecture** e **Atomic Design**.
+> **Interface web do PharmaGuard — gestão inteligente de estoque farmacêutico para reduzir desperdícios, prevenir rupturas e apoiar decisões na saúde pública.**
+
+![Status](https://img.shields.io/badge/Status-MVP%20Entregue-success?style=for-the-badge)
+![License](https://img.shields.io/badge/License-A_Definir-lightgrey?style=for-the-badge)
 
 ---
 
-## 🎯 Objetivo
+## 🎯 Visão geral
 
-O PharmaGuard tem como objetivo auxiliar unidades de saúde no controle de:
+O `pharmaguard-ui` é a camada de apresentação do **PharmaGuard**, consumindo a API REST do [`pharmaguard-api`](../pharmaguard-api) para oferecer aos times de farmácia e gestão de unidades de saúde uma interface completa de:
 
-- 💊 Medicamentos e insumos
-- 📦 Estoque
-- 🏷️ Lotes e validade
-- 🚚 Entradas e saídas
-- 🏥 Unidades de saúde
-- 🔄 Transferências entre unidades
-- 📊 Indicadores e relatórios
-- ⚠️ Alertas de estoque e validade
-- 🤖 Análises inteligentes baseadas nos dados do estoque
+- 💊 Cadastro de medicamentos, insumos e unidades de medida
+- 🏭 Cadastro de fornecedores e pedidos de compra
+- 📦 Controle de estoque por lote e validade
+- 🚚 Registro de entradas, saídas e transferências entre unidades
+- 🏥 Cadastro e administração de unidades de saúde e usuários
+- ⚠️ Consulta de alertas de ruptura e vencimento
+- 📊 Relatórios analíticos de consumo, criticidade e reposição
+- 🤖 Painel de inteligência de estoque com diagnóstico assistido por IA
+- 🔌 Módulo de integrações com sistemas externos (evolução futura da API)
 
-O `pharmaguard-ui` é responsável pela camada de apresentação e interação com o usuário.
+O projeto foi construído seguindo **Feature-Sliced Design (FSD)**, **Clean Architecture** e **Atomic Design**, priorizando baixo acoplamento entre apresentação, regras de aplicação e infraestrutura.
 
 ---
 
@@ -44,10 +47,10 @@ src/
 |---|---|
 | `app` | Inicialização, providers, router e configurações globais |
 | `pages` | Composição das páginas da aplicação |
-| `widgets` | Blocos complexos e reutilizáveis de interface |
-| `features` | Funcionalidades e ações do usuário |
-| `entities` | Conceitos de negócio |
-| `shared` | Código reutilizável e independente do domínio |
+| `widgets` | Blocos complexos e reutilizáveis de interface (ex.: cards do dashboard) |
+| `features` | Funcionalidades e ações do usuário (CRUDs, consultas, integrações mockadas) |
+| `entities` | Conceitos de negócio (tipos, filtros, catálogos) |
+| `shared` | Código reutilizável e independente do domínio (API, UI kit, config) |
 
 ### Clean Architecture
 
@@ -65,7 +68,7 @@ Domain
 Infrastructure
 ```
 
-A camada de apresentação não deve conter regras de negócio.
+A camada de apresentação (componentes `.vue`) não contém regras de negócio: consultas, validações e transformações de dados vivem em composables (`features/*/model`) e nas entidades (`entities/*/model`).
 
 ### Atomic Design
 
@@ -74,26 +77,9 @@ O Atomic Design será utilizado principalmente dentro de `shared/ui`:
 ```text
 shared/
 └── ui/
-    ├── atoms/
-    ├── molecules/
-    └── organisms/
-```
-
-Exemplo:
-
-```text
-atoms/
-├── Button
-├── Input
-└── Label
-
-molecules/
-└── FormField
-
-organisms/
-├── Header
-├── Sidebar
-└── DataTable
+    ├── atoms/       Button, Input, Label, Icon, Select, StatusBadge, Card, Typography
+    ├── molecules/   FormField, MetricCard, SectionPanel, SearchField, AlertItem, UserInfo
+    └── organisms/   Sidebar, Header, DashboardHeader, DataTable
 ```
 
 O Atomic Design organiza componentes visuais, enquanto o FSD organiza a aplicação como um todo.
@@ -112,15 +98,36 @@ pharmaguard-ui/
 │   │   └── App.vue
 │   │
 │   ├── pages/
+│   │   ├── login/ home/ medicamentos/ unidades-medida/ estoque/
+│   │   ├── fornecedores/ pedidos-compra/ unidades-saude/
+│   │   ├── entradas/ saidas/ transferencias/
+│   │   ├── alertas/ relatorios/ inteligencia/
+│   │   ├── usuarios/ integracoes/ module-placeholder/
+│   │
 │   ├── widgets/
+│   │   └── dashboard-alerts/ dashboard-consumption/ dashboard-metrics/
+│   │       dashboard-transfers/ dashboard-unit-stock/
+│   │
 │   ├── features/
+│   │   ├── auth/ usuario-crud/ medicamento-crud/ unidade-medida-crud/
+│   │   ├── fornecedor-crud/ unidade-saude-crud/
+│   │   ├── entrada-estoque-crud/ saida-estoque-crud/ transferencia-estoque-crud/
+│   │   ├── estoque-consulta/ alerta-consulta/ relatorio-consulta/
+│   │   ├── dashboard-overview/ dashboard-insight/ inteligencia-consulta/
+│   │   ├── nota-fiscal-entrada-mock/ pedido-compra-mock/
+│   │   └── integracao-bnafar-mock/ integracao-catmat-mock/
+│   │       integracao-rnds-mock/ integracao-anvisa-mock/
+│   │
 │   ├── entities/
+│   │   ├── session/ usuario/ medicamento/ unidade-medida/ fornecedor/
+│   │   ├── unidade-saude/ estoque/ entrada-estoque/ saida-estoque/
+│   │   ├── transferencia-estoque/ alerta/ relatorio/ dashboard/
+│   │   └── nota-fiscal-entrada/ pedido-compra/ integracao/
 │   │
 │   └── shared/
-│       ├── api/
-│       ├── config/
-│       ├── lib/
-│       ├── types/
+│       ├── api/         # authApi, medicationApi, supplierApi, stockApi, stock(Entry/Output/Transfer)Api,
+│       │                # healthUnitApi, unitMeasureApi, userApi, alertApi, reportApi, dashboardApi, intelligenceApi
+│       ├── config/      # messages.ts (i18n de textos da aplicação)
 │       ├── utils/
 │       └── ui/
 │           ├── atoms/
@@ -128,7 +135,8 @@ pharmaguard-ui/
 │           └── organisms/
 │
 ├── .env.example
-├── .gitignore
+├── Dockerfile
+├── nginx.conf
 ├── eslint.config.js
 ├── package.json
 ├── tsconfig.json
@@ -140,15 +148,31 @@ pharmaguard-ui/
 
 ## 🛠️ Stack
 
+<p>
+<img src="https://img.shields.io/badge/Vue.js-3-4FC08D?style=for-the-badge&logo=vuedotjs&logoColor=white" alt="Vue 3" />
+<img src="https://img.shields.io/badge/TypeScript-5-3178C6?style=for-the-badge&logo=typescript&logoColor=white" alt="TypeScript" />
+<img src="https://img.shields.io/badge/Vite-5-646CFF?style=for-the-badge&logo=vite&logoColor=white" alt="Vite" />
+<img src="https://img.shields.io/badge/Pinia-State-FFD859?style=for-the-badge&logo=pinia&logoColor=black" alt="Pinia" />
+<img src="https://img.shields.io/badge/Vue_Router-4-4FC08D?style=for-the-badge&logo=vuedotjs&logoColor=white" alt="Vue Router" />
+</p>
+
+<p>
+<img src="https://img.shields.io/badge/Axios-HTTP-5A29E4?style=for-the-badge&logo=axios&logoColor=white" alt="Axios" />
+<img src="https://img.shields.io/badge/ESLint-Lint-4B32C3?style=for-the-badge&logo=eslint&logoColor=white" alt="ESLint" />
+<img src="https://img.shields.io/badge/Prettier-Format-F7B93E?style=for-the-badge&logo=prettier&logoColor=black" alt="Prettier" />
+<img src="https://img.shields.io/badge/Docker-Nginx-2496ED?style=for-the-badge&logo=docker&logoColor=white" alt="Docker" />
+</p>
+
 | Tecnologia | Utilização |
 |---|---|
-| Vue 3 | Framework frontend |
+| Vue 3 (`<script setup>`) | Framework frontend |
 | TypeScript | Tipagem estática |
 | Vite | Build e desenvolvimento |
-| Vue Router | Roteamento |
-| Pinia | Gerenciamento de estado |
-| ESLint | Qualidade e padronização |
-| Prettier | Formatação de código |
+| Vue Router | Roteamento e guarda de rotas autenticadas/por papel |
+| Pinia | Gerenciamento de estado (sessão do usuário) |
+| Axios | Cliente HTTP para a `pharmaguard-api` |
+| ESLint + Prettier | Qualidade e padronização de código |
+| Docker + Nginx | Build e serving da aplicação em produção |
 
 ---
 
@@ -156,13 +180,9 @@ pharmaguard-ui/
 
 ### Pré-requisitos
 
-- Node.js
-- npm
-
-Versões recomendadas para este projeto:
-
-- Node.js `v24.19.0`
+- Node.js `v24.19.0` (ver `.nvmrc`)
 - npm `11.17.0` ou superior
+- `pharmaguard-api` em execução (para integração real; ver seção de módulos mockados para uso sem backend)
 
 Verifique as versões:
 
@@ -179,7 +199,17 @@ cd pharmaguard-ui
 npm install
 ```
 
-Execute em modo de desenvolvimento:
+### Variáveis de ambiente
+
+```bash
+cp .env.example .env
+```
+
+```env
+VITE_API_BASE_URL=http://localhost:8080
+```
+
+### Modo de desenvolvimento
 
 ```bash
 npm run dev
@@ -191,52 +221,58 @@ A aplicação estará disponível na URL exibida pelo Vite, normalmente:
 http://localhost:5173
 ```
 
+### Build de produção
+
+```bash
+npm run build
+npm run preview
+```
+
+### Docker
+
+```bash
+docker build -t pharmaguard-ui --build-arg VITE_API_BASE_URL=http://localhost:8080 .
+docker run -p 8081:80 pharmaguard-ui
+```
+
 ---
 
 ## 🔍 Qualidade
 
-Execute o lint:
-
 ```bash
-npm run lint
-```
-
-Execute o build:
-
-```bash
-npm run build
+npm run lint        # eslint --max-warnings=0
+npm run lint:fix
+npm run type-check  # vue-tsc --noEmit
+npm run build       # type-check + vite build
 ```
 
 Antes de realizar um commit, recomenda-se validar:
 
 ```bash
-npm run lint
-npm run build
+npm run lint && npm run build
 ```
 
 ---
 
 ## 🔌 Integração com o Backend
 
-O frontend será integrado ao backend:
+O frontend é integrado ao backend:
 
 ```text
 pharmaguard-ui
        │
-       │ HTTP/REST
+       │ HTTP/REST (JWT)
        ▼
 pharmaguard-api
 ```
 
-A comunicação será realizada por meio de uma camada de API localizada em:
+Toda a comunicação HTTP fica isolada em `src/shared/api/` (um arquivo por domínio: `authApi`, `medicationApi`, `supplierApi`, `stockApi`, `stockEntryApi`, `stockOutputApi`, `stockTransferApi`, `healthUnitApi`, `unitMeasureApi`, `userApi`, `alertApi`, `reportApi`, `dashboardApi`, `intelligenceApi`), evitando que componentes Vue dependam diretamente de detalhes de infraestrutura.
 
-```text
-src/shared/api/
-```
+Erros HTTP seguem o padrão RFC 7807 (`ProblemDetail`) retornado pela API e são tratados de forma centralizada em `shared/api/http/httpError.ts`.
 
-Essa separação evita que componentes Vue dependam diretamente de detalhes de infraestrutura.
+O token JWT emitido no login é mantido na store de sessão (`entities/session`, Pinia) e reidratado do `localStorage` a cada carregamento da aplicação; o guard do Vue Router bloqueia rotas autenticadas sem sessão válida e rotas restritas por papel (ex.: `ROLE_ADMIN`).
 
-A URL da API deverá ser configurada por variável de ambiente:
+A URL da API é configurada por variável de ambiente:
 
 ```env
 VITE_API_BASE_URL=http://localhost:8080
@@ -244,43 +280,53 @@ VITE_API_BASE_URL=http://localhost:8080
 
 ---
 
-## 🧩 Domínios planejados
+## 📋 Módulos entregues no MVP
 
-A aplicação deverá evoluir inicialmente com os seguintes domínios:
+### 👤 Autenticação e usuários
+- Login com autenticação JWT e persistência de sessão
+- Controle de acesso por rota e por papel (perfis do backend)
+- CRUD de usuários e perfis
 
-```text
-entities/
-├── usuario/
-├── perfil/
-├── medicamento/
-├── lote/
-├── estoque/
-├── unidade-saude/
-└── fornecedor/
-```
+### 💊 Cadastros
+- Medicamentos e insumos (categoria, criticidade, unidade de medida)
+- Unidades de medida
+- Fornecedores (lead time, documento, observações)
+- Unidades de saúde
 
-E funcionalidades como:
+### 📦 Estoque e movimentações
+- Consulta de estoque por unidade, saldo por lote e vencimentos
+- Registro de entradas de estoque (fornecedor, lote, validade, quantidade)
+- Registro de saídas de estoque com consumo por lote (FEFO)
+- Transferências entre unidades de saúde
 
-```text
-features/
-├── autenticar-usuario/
-├── cadastrar-medicamento/
-├── movimentar-estoque/
-├── cadastrar-unidade/
-├── transferir-medicamento/
-├── consultar-riscos-estoque/
-└── analisar-estoque/
-```
+### ⚠️ Alertas e 📊 relatórios
+- Consulta de alertas de ruptura e vencimento por período/unidade
+- Relatórios analíticos: consumo, estoque mínimo, vencimentos, criticidade e reposição
+
+### 🤖 Inteligência de estoque
+- Indicadores estatísticos de consumo, risco de ruptura e de vencimento
+- Sugestões de transferência entre unidades
+- Diagnóstico assistido por IA (com fallback determinístico quando a IA está indisponível)
+
+### 🧪 Demonstrações mockadas (evolução futura da API)
+
+Funcionalidades implementadas **somente no frontend**, sem persistência real, para demonstrar próximos passos de evolução do produto:
+
+- **Entrada por Nota Fiscal** (`/entradas/nota-fiscal`): leitura simulada de código de barras da DANFE, importação simulada de XML/PDF e lançamento manual de itens com NCM e unidade de medida.
+- **Pedido de Compra** (`/pedidos-compra`): montagem de pedido com fornecedor, condição de pagamento, prioridade e itens estimados.
+- **Módulo de Integrações** (`/integracoes`): catálogo de integrações com sistemas federais, com 4 integrações simuladas de ponta a ponta (conexão + ação + histórico):
+  - **BNAFAR** — transmissão de posição de estoque, entradas, saídas e perdas via e-SUS.
+  - **CATMAT / TUSS** — sincronização de itens com o catálogo nacional (RENAME).
+  - **RNDS** — vínculo da dispensação ao histórico de saúde do cidadão via CPF/CNS.
+  - **ANVISA — Registros e Lotes** — validação de registro, alerta de recall e validade regulatória.
+
+  Novas integrações (ex.: SNGPC/ANVISA) já estão catalogadas como "Em breve" e seguem o mesmo padrão de implementação.
 
 ---
 
 ## 🤖 Inteligência Artificial
 
-Uma futura evolução do PharmaGuard prevê um módulo de inteligência artificial integrado ao backend.
-
-A proposta é utilizar IA para **interpretar dados produzidos pelo sistema**, e não substituir as regras de negócio ou o motor estatístico.
-
-Fluxo planejado:
+O painel de Inteligência (`/inteligencia`) integra um módulo de IA no backend para **interpretar dados produzidos pelo sistema**, sem substituir as regras de negócio ou o motor estatístico.
 
 ```text
 Estoque
@@ -301,29 +347,17 @@ Análise e explicação
 PharmaGuard UI
 ```
 
-Possíveis funcionalidades:
-
-- Análise inteligente de estoque
-- Identificação de riscos de ruptura
-- Identificação de riscos de vencimento
-- Análise de oportunidades de transferência entre unidades
-- Resumo inteligente de relatórios
-- Assistente para consulta dos indicadores do sistema
-
-A implementação de IA deverá permanecer desacoplada da camada de apresentação.
+Quando a IA está indisponível, a interface exibe um resumo determinístico como fallback, mantendo a experiência funcional.
 
 ---
 
 ## 🧪 Testes
 
-A estratégia de testes será definida conforme a evolução do projeto.
+A estratégia de testes automatizados de UI (componentes e end-to-end) está prevista para as próximas iterações. No MVP, a qualidade é garantida por:
 
-A expectativa é utilizar:
-
-- Testes unitários
-- Testes de componentes
-- Testes de integração
-- Testes end-to-end
+- Tipagem estática (`vue-tsc --noEmit`)
+- Lint (`eslint --max-warnings=0`)
+- Validação manual de fluxos por módulo antes de cada entrega
 
 O objetivo é manter as regras de negócio testáveis independentemente da interface.
 
@@ -346,32 +380,41 @@ O desenvolvimento do `pharmaguard-ui` segue alguns princípios:
 
 ### Regra principal
 
-> Componentes Vue devem cuidar da apresentação. Regras de negócio devem permanecer fora da camada de UI.
+> Componentes Vue devem cuidar da apresentação. Regras de negócio e chamadas HTTP permanecem fora da camada de UI (em `features/*/model` e `shared/api`).
 
 ---
 
 ## 📌 Status
 
-🚧 **Em desenvolvimento**
+✅ **MVP entregue**
 
-O `pharmaguard-ui` está sendo desenvolvido em paralelo ao `pharmaguard-api`, priorizando inicialmente a fundação arquitetural e posteriormente a implementação incremental das funcionalidades do PharmaGuard.
+Autenticação, cadastros, estoque, movimentações, alertas, relatórios e inteligência de estoque estão implementados e integrados à `pharmaguard-api`. O módulo de Integrações e as telas de Nota Fiscal por Entrada/Pedido de Compra são demonstrações mockadas que sinalizam a evolução futura da plataforma.
 
-### Fundação inicial implementada
+### Evolução futura
 
-Nesta etapa inicial, já foram configurados:
-
-- Vue 3 + TypeScript + Vite
-- Vue Router com rota inicial (`/`)
-- Pinia com provider global
-- ESLint + Prettier
-- Estrutura FSD (`app`, `pages`, `widgets`, `features`, `entities`, `shared`)
-- Estrutura de Atomic Design em `shared/ui` (atoms, molecules e organisms)
-- Página inicial simples para validar composição de layout e componentes
-
-Ainda **não** foram implementados autenticação, integrações reais com API, CRUDs e regras de negócio.
+- Implementação real das integrações do módulo Integrações (BNAFAR, CATMAT/TUSS, RNDS, ANVISA, SNGPC)
+- Persistência real de Pedido de Compra e Entrada por Nota Fiscal (leitura de DANFE/XML de fato)
+- Testes de componentes e end-to-end
+- Notificações em tempo real de alertas
 
 ---
 
 ## 📄 Licença
 
 Projeto desenvolvido para fins acadêmicos como parte do projeto **PharmaGuard**.
+
+---
+
+## 👨‍💻 Autor
+
+**Rafael Mendonça Brito**
+
+Projeto desenvolvido como parte da formação de Pós-Graduação / Tech Challenge.
+
+---
+
+<p align="center">
+  💊 <strong>PharmaGuard</strong><br>
+  <em>Protegendo estoques. Evitando desperdícios. Garantindo disponibilidade.</em>
+</p>
+

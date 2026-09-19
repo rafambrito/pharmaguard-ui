@@ -23,6 +23,7 @@ const navGroups = computed(() => [
       { label: 'Unidades de Medida', to: '/unidades-medida', icon: 'box' },
       { label: 'Estoque', to: '/estoque', icon: 'box' },
       { label: 'Fornecedores', to: '/fornecedores', icon: 'truck' },
+      { label: 'Pedido de Compra', to: '/pedidos-compra', icon: 'cart' },
       { label: 'Unidades de Saúde', to: '/unidades-saude', icon: 'hospital' },
     ],
   },
@@ -48,6 +49,10 @@ const navGroups = computed(() => [
       { label: 'Usuários', to: '/usuarios', icon: 'users' },
       { label: 'Perfis', to: '/perfis', icon: 'shield' },
     ],
+  },
+  {
+    label: 'Integrações',
+    items: [{ label: 'Integrações', to: '/integracoes', icon: 'plug' }],
   },
 ])
 

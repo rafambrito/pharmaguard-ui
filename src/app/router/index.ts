@@ -3,14 +3,16 @@ import { pinia } from '@/app/providers/pinia'
 import { useSessionStore } from '@/entities/session'
 import { canAccessRoute } from '@/features/auth/lib/accessControl'
 import { AlertasPage } from '@/pages/alertas'
-import { EntradasPage } from '@/pages/entradas'
+import { EntradasPage, EntradaNotaFiscalPage } from '@/pages/entradas'
 import { EstoquePage } from '@/pages/estoque'
 import { FornecedoresPage } from '@/pages/fornecedores'
 import { HomePage } from '@/pages/home'
 import { InteligenciaPage } from '@/pages/inteligencia'
+import { IntegracoesPage, BnafarIntegracaoPage, CatmatIntegracaoPage, RndsIntegracaoPage, AnvisaIntegracaoPage } from '@/pages/integracoes'
 import { LoginPage } from '@/pages/login'
 import { MedicamentosPage } from '@/pages/medicamentos'
 import { ModulePlaceholderPage } from '@/pages/module-placeholder'
+import { PedidoCompraPage } from '@/pages/pedidos-compra'
 import { RelatoriosPage } from '@/pages/relatorios'
 import { SaidasPage } from '@/pages/saidas'
 import { TransferenciasPage } from '@/pages/transferencias'
@@ -86,6 +88,15 @@ export const router = createRouter({
       } satisfies AppRouteMeta,
     },
     {
+      path: '/pedidos-compra',
+      name: 'pedidos-compra',
+      component: PedidoCompraPage,
+      meta: {
+        requiresAuth: true,
+        title: 'Pedido de Compra',
+      } satisfies AppRouteMeta,
+    },
+    {
       path: '/unidades-saude',
       name: 'unidades-saude',
       component: UnidadesSaudePage,
@@ -110,6 +121,15 @@ export const router = createRouter({
       meta: {
         requiresAuth: true,
         title: 'Entradas',
+      } satisfies AppRouteMeta,
+    },
+    {
+      path: '/entradas/nota-fiscal',
+      name: 'entradas-nota-fiscal',
+      component: EntradaNotaFiscalPage,
+      meta: {
+        requiresAuth: true,
+        title: 'Entrada por Nota Fiscal',
       } satisfies AppRouteMeta,
     },
     {
@@ -155,6 +175,51 @@ export const router = createRouter({
       meta: {
         requiresAuth: true,
         title: 'Inteligência',
+      } satisfies AppRouteMeta,
+    },
+    {
+      path: '/integracoes',
+      name: 'integracoes',
+      component: IntegracoesPage,
+      meta: {
+        requiresAuth: true,
+        title: 'Integrações',
+      } satisfies AppRouteMeta,
+    },
+    {
+      path: '/integracoes/bnafar',
+      name: 'integracoes-bnafar',
+      component: BnafarIntegracaoPage,
+      meta: {
+        requiresAuth: true,
+        title: 'Integração BNAFAR',
+      } satisfies AppRouteMeta,
+    },
+    {
+      path: '/integracoes/catmat',
+      name: 'integracoes-catmat',
+      component: CatmatIntegracaoPage,
+      meta: {
+        requiresAuth: true,
+        title: 'Integração CATMAT / TUSS',
+      } satisfies AppRouteMeta,
+    },
+    {
+      path: '/integracoes/rnds',
+      name: 'integracoes-rnds',
+      component: RndsIntegracaoPage,
+      meta: {
+        requiresAuth: true,
+        title: 'Integração RNDS',
+      } satisfies AppRouteMeta,
+    },
+    {
+      path: '/integracoes/anvisa',
+      name: 'integracoes-anvisa',
+      component: AnvisaIntegracaoPage,
+      meta: {
+        requiresAuth: true,
+        title: 'Integração ANVISA',
       } satisfies AppRouteMeta,
     },
     {

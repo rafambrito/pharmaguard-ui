@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { useRouter } from 'vue-router'
 import { t } from '@/shared/config/messages'
 import {
   FORNECEDOR_STATUS,
@@ -9,12 +10,15 @@ import {
 } from '@/entities/fornecedor'
 import { useFornecedorCrud } from '@/features/fornecedor-crud'
 import Button from '@/shared/ui/atoms/Button/Button.vue'
+import Icon from '@/shared/ui/atoms/Icon/Icon.vue'
 import Input from '@/shared/ui/atoms/Input/Input.vue'
 import Label from '@/shared/ui/atoms/Label/Label.vue'
 import Select from '@/shared/ui/atoms/Select/Select.vue'
 import StatusBadge from '@/shared/ui/atoms/StatusBadge/StatusBadge.vue'
 import SectionPanel from '@/shared/ui/molecules/SectionPanel/SectionPanel.vue'
 import DashboardHeader from '@/shared/ui/organisms/DashboardHeader/DashboardHeader.vue'
+
+const router = useRouter()
 
 const {
   fornecedores,
@@ -46,6 +50,13 @@ const statusOptions = FORNECEDOR_STATUS.map((status) => ({
       :title="t('fornecedores.header.title')"
       :subtitle="t('fornecedores.header.subtitle')"
     />
+
+    <div class="page-actions">
+      <Button type="button" variant="secondary" @click="router.push('/pedidos-compra')">
+        <Icon name="cart" :size="16" />
+        {{ t('pedidoCompra.header.title') }}
+      </Button>
+    </div>
 
     <p v-if="feedback" class="feedback" :class="`feedback--${feedback.tone}`" role="status">
       <span class="feedback__dot" aria-hidden="true" />
@@ -206,6 +217,11 @@ const statusOptions = FORNECEDOR_STATUS.map((status) => ({
   width: 100%;
   min-width: 0;
   max-width: 1280px;
+}
+
+.page-actions {
+  display: flex;
+  justify-content: flex-end;
 }
 
 .feedback {
