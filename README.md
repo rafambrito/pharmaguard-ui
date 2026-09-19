@@ -16,7 +16,9 @@ O `pharmaguard-ui` é a camada de apresentação do **PharmaGuard**, consumindo 
 - 📦 Controle de estoque por lote e validade
 - 🚚 Registro de entradas, saídas e transferências entre unidades
 - 🏥 Cadastro e administração de unidades de saúde e usuários
+- 🧑‍⚕️ Cadastro de pacientes e registro de dispensações vinculadas ao paciente
 - ⚠️ Consulta de alertas de ruptura e vencimento
+- 🔔 Central de notificações no topo com alertas recentes e acesso à consulta completa
 - 📊 Relatórios analíticos de consumo, criticidade e reposição
 - 🤖 Painel de inteligência de estoque com diagnóstico assistido por IA
 - 🔌 Módulo de integrações com sistemas externos (evolução futura da API)
@@ -101,7 +103,7 @@ pharmaguard-ui/
 │   │   ├── login/ home/ medicamentos/ unidades-medida/ estoque/
 │   │   ├── fornecedores/ pedidos-compra/ unidades-saude/
 │   │   ├── entradas/ saidas/ transferencias/
-│   │   ├── alertas/ relatorios/ inteligencia/
+│   │   ├── pacientes/ dispensacoes/ alertas/ relatorios/ inteligencia/
 │   │   ├── usuarios/ integracoes/ module-placeholder/
 │   │
 │   ├── widgets/
@@ -110,7 +112,7 @@ pharmaguard-ui/
 │   │
 │   ├── features/
 │   │   ├── auth/ usuario-crud/ medicamento-crud/ unidade-medida-crud/
-│   │   ├── fornecedor-crud/ unidade-saude-crud/
+│   │   ├── fornecedor-crud/ unidade-saude-crud/ paciente-crud/ dispensacao-crud/
 │   │   ├── entrada-estoque-crud/ saida-estoque-crud/ transferencia-estoque-crud/
 │   │   ├── estoque-consulta/ alerta-consulta/ relatorio-consulta/
 │   │   ├── dashboard-overview/ dashboard-insight/ inteligencia-consulta/
@@ -299,9 +301,16 @@ VITE_API_BASE_URL=http://localhost:8080
 - Registro de saídas de estoque com consumo por lote (FEFO)
 - Transferências entre unidades de saúde
 
-### ⚠️ Alertas e 📊 relatórios
+### ⚠️ Alertas, notificações e 📊 relatórios
 - Consulta de alertas de ruptura e vencimento por período/unidade
+- Central de notificações na topbar, alimentada pelos alertas recentes da API
+- Acesso direto da central à página completa de alertas
 - Relatórios analíticos: consumo, estoque mínimo, vencimentos, criticidade e reposição
+
+### 🧑‍⚕️ Pacientes e dispensações
+- Cadastro, pesquisa, edição e exclusão de pacientes
+- Registro e consulta de dispensações por unidade, paciente e medicamento
+- Seleção de lotes conforme a estratégia FEFO
 
 ### 🤖 Inteligência de estoque
 - Indicadores estatísticos de consumo, risco de ruptura e de vencimento
@@ -359,7 +368,7 @@ A estratégia de testes automatizados de UI (componentes e end-to-end) está pre
 - Lint (`eslint --max-warnings=0`)
 - Validação manual de fluxos por módulo antes de cada entrega
 
-O objetivo é manter as regras de negócio testáveis independentemente da interface.
+O objetivo é manter as regras de negócio testáveis independentemente da interface. Os fluxos de pacientes, dispensações, alertas e relatórios usam a API real; as telas listadas como mock não fazem chamadas ao backend.
 
 ---
 
@@ -388,14 +397,14 @@ O desenvolvimento do `pharmaguard-ui` segue alguns princípios:
 
 ✅ **MVP entregue**
 
-Autenticação, cadastros, estoque, movimentações, alertas, relatórios e inteligência de estoque estão implementados e integrados à `pharmaguard-api`. O módulo de Integrações e as telas de Nota Fiscal por Entrada/Pedido de Compra são demonstrações mockadas que sinalizam a evolução futura da plataforma.
+Autenticação, cadastros, estoque, movimentações, pacientes, dispensações, alertas, notificações, relatórios e inteligência de estoque estão implementados e integrados à `pharmaguard-api`. O módulo de Integrações e as telas de Nota Fiscal por Entrada/Pedido de Compra são demonstrações mockadas que sinalizam a evolução futura da plataforma.
 
 ### Evolução futura
 
 - Implementação real das integrações do módulo Integrações (BNAFAR, CATMAT/TUSS, RNDS, ANVISA, SNGPC)
 - Persistência real de Pedido de Compra e Entrada por Nota Fiscal (leitura de DANFE/XML de fato)
 - Testes de componentes e end-to-end
-- Notificações em tempo real de alertas
+- Notificações em tempo real e atualização automática da central de alertas
 
 ---
 
