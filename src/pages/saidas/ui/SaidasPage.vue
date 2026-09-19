@@ -30,7 +30,7 @@ const {
   novo,
 } = useSaidaEstoqueCrud()
 
-const motivoOptions = SAIDA_ESTOQUE_MOTIVOS.map((motivo) => ({
+const motivoOptions = SAIDA_ESTOQUE_MOTIVOS.filter((motivo) => motivo !== 'DISPENSACAO').map((motivo) => ({
   value: motivo,
   label: saidaEstoqueMotivoLabel(motivo),
 }))

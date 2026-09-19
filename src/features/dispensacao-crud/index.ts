@@ -1,0 +1,1 @@
+export { useDispensacaoCrud } from '@/features/dispensacao-crud/model/useDispensacaoCrud'

@@ -1,0 +1,1 @@
+export { usePacienteCrud } from '@/features/paciente-crud/model/usePacienteCrud'

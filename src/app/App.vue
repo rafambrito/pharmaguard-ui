@@ -11,6 +11,10 @@ const router = useRouter()
 const sessionStore = useSessionStore()
 const { displayName, primaryRole } = useCurrentUser()
 
+const canAccessPatientModule = computed(() =>
+  sessionStore.currentRoles.some((role) => role === 'ROLE_ADMIN' || role === 'ROLE_GESTOR'),
+)
+
 const navGroups = computed(() => [
   {
     label: 'Início',
@@ -25,6 +29,7 @@ const navGroups = computed(() => [
       { label: 'Fornecedores', to: '/fornecedores', icon: 'truck' },
       { label: 'Pedido de Compra', to: '/pedidos-compra', icon: 'cart' },
       { label: 'Unidades de Saúde', to: '/unidades-saude', icon: 'hospital' },
+      ...(canAccessPatientModule.value ? [{ label: 'Pacientes', to: '/pacientes', icon: 'users' as const }] : []),
     ],
   },
   {
@@ -32,6 +37,7 @@ const navGroups = computed(() => [
     items: [
       { label: 'Entradas', to: '/entradas', icon: 'arrow-in' },
       { label: 'Saídas', to: '/saidas', icon: 'arrow-out' },
+      ...(canAccessPatientModule.value ? [{ label: 'Dispensações', to: '/dispensacoes', icon: 'pill' as const }] : []),
       { label: 'Transferências', to: '/transferencias', icon: 'transfer' },
     ],
   },

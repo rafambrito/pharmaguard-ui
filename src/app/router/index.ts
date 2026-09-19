@@ -13,6 +13,8 @@ import { LoginPage } from '@/pages/login'
 import { MedicamentosPage } from '@/pages/medicamentos'
 import { ModulePlaceholderPage } from '@/pages/module-placeholder'
 import { PedidoCompraPage } from '@/pages/pedidos-compra'
+import { PacientesPage } from '@/pages/pacientes'
+import { DispensacoesPage } from '@/pages/dispensacoes'
 import { RelatoriosPage } from '@/pages/relatorios'
 import { SaidasPage } from '@/pages/saidas'
 import { TransferenciasPage } from '@/pages/transferencias'
@@ -139,6 +141,26 @@ export const router = createRouter({
       meta: {
         requiresAuth: true,
         title: 'Saídas',
+      } satisfies AppRouteMeta,
+    },
+    {
+      path: '/pacientes',
+      name: 'pacientes',
+      component: PacientesPage,
+      meta: {
+        requiresAuth: true,
+        roles: ['ROLE_ADMIN', 'ROLE_GESTOR'],
+        title: 'Pacientes',
+      } satisfies AppRouteMeta,
+    },
+    {
+      path: '/dispensacoes',
+      name: 'dispensacoes',
+      component: DispensacoesPage,
+      meta: {
+        requiresAuth: true,
+        roles: ['ROLE_ADMIN', 'ROLE_GESTOR'],
+        title: 'Dispensações',
       } satisfies AppRouteMeta,
     },
     {

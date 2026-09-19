@@ -1,0 +1,1 @@
+export { default as PacientesPage } from '@/pages/pacientes/ui/PacientesPage.vue'

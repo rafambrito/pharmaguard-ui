@@ -1,0 +1,1 @@
+export { default as DispensacoesPage } from '@/pages/dispensacoes/ui/DispensacoesPage.vue'
