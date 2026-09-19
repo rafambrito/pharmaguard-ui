@@ -233,8 +233,15 @@ npm run preview
 ### Docker
 
 ```bash
-docker build -t pharmaguard-ui --build-arg VITE_API_BASE_URL=http://localhost:8080 .
-docker run -p 8081:80 pharmaguard-ui
+docker build -t rafambrito/pharmaguard-ui:latest --build-arg VITE_API_BASE_URL=http://localhost:8080 .
+docker run -p 8081:80 rafambrito/pharmaguard-ui:latest
+```
+
+Para publicar no Docker Hub:
+
+```bash
+docker login
+docker push rafambrito/pharmaguard-ui:latest
 ```
 
 ---
