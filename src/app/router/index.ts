@@ -17,6 +17,7 @@ import { PacientesPage } from '@/pages/pacientes'
 import { DispensacoesPage } from '@/pages/dispensacoes'
 import { RelatoriosPage } from '@/pages/relatorios'
 import { SaidasPage } from '@/pages/saidas'
+import { SobrePage } from '@/pages/sobre'
 import { TransferenciasPage } from '@/pages/transferencias'
 import { UnidadesMedidaPage } from '@/pages/unidades-medida'
 import { UnidadesSaudePage } from '@/pages/unidades-saude'
@@ -242,6 +243,15 @@ export const router = createRouter({
       meta: {
         requiresAuth: true,
         title: 'Integração ANVISA',
+      } satisfies AppRouteMeta,
+    },
+    {
+      path: '/sobre',
+      name: 'sobre',
+      component: SobrePage,
+      meta: {
+        requiresAuth: true,
+        title: 'Sobre',
       } satisfies AppRouteMeta,
     },
     {

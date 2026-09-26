@@ -60,6 +60,10 @@ const navGroups = computed(() => [
     label: 'Integrações',
     items: [{ label: 'Integrações', to: '/integracoes', icon: 'plug' }],
   },
+  {
+    label: 'Plataforma',
+    items: [{ label: 'Sobre', to: '/sobre', icon: 'report' }],
+  },
 ])
 
 const shouldUseShell = computed(() => route.name !== 'login')

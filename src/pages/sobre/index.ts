@@ -1,0 +1,1 @@
+export { default as SobrePage } from '@/pages/sobre/ui/SobrePage.vue'
